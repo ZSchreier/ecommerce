@@ -1,3 +1,6 @@
+
+// The comments here were provided with the starter code. I have left them in here to show the information I was given to work off of to achieve product completion
+
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 

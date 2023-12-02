@@ -1,3 +1,8 @@
+
+// The comments here were provided with the starter code. I have left them in here to show the information I was given to work off of to achieve product completion
+
+// One particular comment: I noticed that the PUT and POST routes were already coded in the starter code using ".then" blocks. I used async await functions for the other routes instead as I am more familiar with them.
+
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
