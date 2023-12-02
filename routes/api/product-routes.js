@@ -9,7 +9,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const payload = await Product.findAll({
-      include: [{model: Category, Tag, ProductTag}]
+      include: [{model: Category}, {model: Tag}]
     });
     res.status(200).json({status: 'success', sendback: payload})
   } catch (err){
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const payload = await Product.findByPk(req.params.id, {
-      include: [{model: Category, Tag, ProductTag}]
+      include: [{model: Category}, {model: Tag}]
     });
     res.status(200).json({status: 'success', sendback: payload})
   } catch (err){
