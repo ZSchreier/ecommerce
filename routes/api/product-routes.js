@@ -9,7 +9,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const payload = await Product.findAll({
-      include: [{model: Category, Tag}]
+      include: [{model: Category, Tag, ProductTag}]
     });
     res.status(200).json({status: 'success', sendback: payload})
   } catch (err){
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const payload = await Product.findByPk(req.params.id, {
-      include: [{model: Category, Tag}]
+      include: [{model: Category, Tag, ProductTag}]
     });
     res.status(200).json({status: 'success', sendback: payload})
   } catch (err){
@@ -108,8 +108,18 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+// delete one product by its `id` value
+router.delete('/:id', async (req, res) => {
+  try{
+    const payload = await Product.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    res.status(200).json({status: 'success'})
+  }catch(err){
+    res.status(500).json({status: 'error', sendback: err.message})
+  }
 });
 
 module.exports = router;
